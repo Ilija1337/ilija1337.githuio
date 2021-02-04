@@ -86,11 +86,11 @@ function createChart(rawData) {
     let options = {
         title: {
             display: true,
-            text: ['Display of measurement results'],
+            text: ['Rezultati merenja'],
             fontSize: 23,
         },
         legend: {
-            position: 'bottom',
+            position: 'right',
             labels: {
                 fontColor: 'black',
             }
@@ -128,28 +128,4 @@ function getColor() {
         '008080',
     ]
     return colors[Math.floor(Math.random() * colors.length)]
-}
-
-function upload(evt) {
-    if (chart != null) {
-        chart.destroy();
-    }
-
-    let data = null;
-    let file = evt.target.files[0];
-    let reader = new FileReader();
-    try { reader.readAsText(file); } catch (e) { console.log(e) }
-    reader.onload = function (event) {
-        let csvData = event.target.result;
-        data = csvData;
-        if (data && data.length > 0) {
-            console.log('Imported -' + data.length + '- rows successfully!');
-            dataToArrays(data);
-        } else {
-            console.log('No data to import!');
-        }
-    };
-    reader.onerror = function () {
-        console.log('Unable to read ' + file.fileName);
-    };
 }
