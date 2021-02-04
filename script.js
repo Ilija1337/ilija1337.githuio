@@ -68,7 +68,7 @@ function createChart(rawData) {
             label: label,
             data: datasetData,
 
-            borderColor: '#' + getColor(),
+            //borderColor: '#' + getColor(),
             borderWidth: '1',
 
             pointRadius: 0,
@@ -92,7 +92,7 @@ function createChart(rawData) {
         legend: {
             position: 'right',
             labels: {
-                fontColor: 'black',
+                fontColor: 'green',
             }
         },
         tooltips: {
