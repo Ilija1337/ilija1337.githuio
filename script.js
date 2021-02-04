@@ -20,8 +20,8 @@ function createChart(rawData) {
 
     for (let i = 0; i < dataArray.length; i++) {
         for (let j = 0; j < dataArray[i].length; j++) {
-            if (!dataArray[i][j]) {
-                dataArray[i][j] = null;
+            if(j==0){
+                dataArray[i][j] = parseInt(dataArray[i][j])
             }
             dataMatrix[j][i] = dataArray[i][j];
         }
@@ -45,9 +45,8 @@ function createChart(rawData) {
 
     Chart.defaults.global.defaultFontFamily = 'Consolas';
     Chart.defaults.global.defaultFontSize = 18;
-    Chart.defaults.global.defaultFontColor = 'black';
+    Chart.defaults.global.defaultFontColor = 'white';
 
-    Chart.defaults.global.elements.line.backgroundColor = 'transparent';
 
     /* /Global chart options */
 
@@ -63,16 +62,28 @@ function createChart(rawData) {
 
         let datasetData = dataMatrix[i];
         datasetData.splice(0, 3);
-
+        if(i!=2 && i!=3){
         datasets.push({
             label: label,
             data: datasetData,
 
             borderColor: '#' + getColor(),
-            borderWidth: '2',
+            borderWidth: '1',
+            borderDash: [5, 5],
 
             pointRadius: 0,
-        });
+        });}
+        else{
+        datasets.push({
+            label: label,
+            data: datasetData,
+
+            borderColor: getColor(),
+            borderWidth: '1',
+
+            pointRadius: 0,
+        });}
+
     }
 
     /* /Data */
@@ -89,14 +100,26 @@ function createChart(rawData) {
             display: true,
             text: ['Rezultati merenja'],
             fontSize: 23,
-            fontColor: 'green'
+            fontColor: 'white'
         },
         legend: {
             position: 'right',
             labels: {
-                fontColor: 'green',
+                fontColor: 'white',
             }
         },
+        scales: {
+            xAxes: [{
+              gridLines: {
+                display: false
+              },
+            }],
+            yAxes: [{
+              gridLines: {
+                display: false
+              },
+            }]
+          },
         tooltips: {
             intersect: false,
             callbacks: {
@@ -116,18 +139,12 @@ function createChart(rawData) {
 
 function getColor() {
     colors = [
-        'FF0000',
-        'FF4500',
-        'C71585',
-        'FF8C00',
-        'FF00FF',
-        '1E90FF',
-        '0000FF',
-        'D2691E',
-        'CD5C5C',
-        '6A5ACD',
-        '32CD32',
-        '008080',
+        'orange',
+        'green',
+        'yellow',
+        'red',
+        'white',
+
     ]
     return colors[Math.floor(Math.random() * colors.length)]
 }
