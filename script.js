@@ -68,8 +68,8 @@ function createChart(rawData) {
             label: label,
             data: datasetData,
 
-            //borderColor: '#' + getColor(),
-            borderWidth: '1',
+            borderColor: '#' + getColor(),
+            borderWidth: '2',
 
             pointRadius: 0,
         });
@@ -78,6 +78,7 @@ function createChart(rawData) {
     /* /Data */
 
     let myChart = document.getElementById('myChart').getContext('2d');
+  
     let type = 'line';
     let data = {
         labels,
@@ -88,6 +89,7 @@ function createChart(rawData) {
             display: true,
             text: ['Rezultati merenja'],
             fontSize: 23,
+            fontColor: 'green'
         },
         legend: {
             position: 'right',
