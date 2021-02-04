@@ -2,30 +2,13 @@ let chart = document.getElementById('myChart');
 
 $(document).ready(function () {
     if ($('#myChart').html() === "") {
-        $.get('csv_pressure_temperature_light_sound.csv', function (data) { dataToArrays(data) }, 'text');
+        $.get('https://ilija1337.github.io/csv_pressure_temperature_light_sound.csv', function (data) { createChart(data) }, 'text');
     }
-
-    document.getElementById('csvFile').addEventListener('change', upload, false);
 
 });
 
-function dataToArrays(data) {
-    let rawData = Papa.parse(data);
-    let parsedData = Papa.parse(data, { header: true });
-    let index = parsedData.meta.fields;
-
-    parsedData.data.forEach(element => {
-        let ielement = element;
-        index.forEach(indexElement => {
-            $('#parsedData').append(ielement[indexElement]);
-            $('#parsedData').append('&#x9;');
-        });
-        $('#parsedData').append('<br />');
-    });
-    createChart(rawData);
-}
-
-function createChart(parsedData) {
+function createChart(data) { 
+    let parsedData = Papa.parse(data);
     let dataArray = parsedData.data;
     let dataMatrix = [];
 
@@ -140,28 +123,4 @@ function getColor() {
         '008080',
     ]
     return colors[Math.floor(Math.random() * colors.length)]
-}
-
-function upload(evt) {
-    if (chart != null) {
-        chart.destroy();
-    }
-
-    let data = null;
-    let file = evt.target.files[0];
-    let reader = new FileReader();
-    try { reader.readAsText(file); } catch (e) { console.log(e) }
-    reader.onload = function (event) {
-        let csvData = event.target.result;
-        data = csvData;
-        if (data && data.length > 0) {
-            console.log('Imported -' + data.length + '- rows successfully!');
-            dataToArrays(data);
-        } else {
-            console.log('No data to import!');
-        }
-    };
-    reader.onerror = function () {
-        console.log('Unable to read ' + file.fileName);
-    };
 }
