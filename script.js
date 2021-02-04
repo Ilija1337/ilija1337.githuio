@@ -7,8 +7,8 @@ $(document).ready(function () {
 
 });
 
-function createChart(data) { 
-    let parsedData = Papa.parse(data);
+function createChart(datap) { 
+    let parsedData = Papa.parse(datap);
     let dataArray = parsedData.data;
     let dataMatrix = [];
 
