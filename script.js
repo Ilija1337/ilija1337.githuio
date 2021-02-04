@@ -2,7 +2,7 @@ let chart = document.getElementById('myChart');
 
 $(document).ready(function () {
     if ($('#myChart').html() === "") {
-        $.get('https://ilija1337.github.io/csv_pressure_temperature_light_sound.csv', function (data) { createChart(data) }, 'text');
+        $.get('https://ilija1337.github.io/csv_pressure_temperature_light_sound.CSV', function (data) { createChart(data) }, 'text');
     }
 
 });
