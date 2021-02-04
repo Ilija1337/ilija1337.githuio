@@ -78,7 +78,7 @@ function createChart(rawData) {
             label: label,
             data: datasetData,
 
-            borderColor: getColor(),
+            borderColor: '#' + getColor(),
             borderWidth: '1',
 
             pointRadius: 0,
@@ -139,11 +139,11 @@ function createChart(rawData) {
 
 function getColor() {
     colors = [
-        'orange',
-        'green',
-        'yellow',
-        'red',
-        'white',
+        '00cc00',
+        '9fff80',
+        'ffb366',
+        'ff8000',
+        'ff3333',
 
     ]
     return colors[Math.floor(Math.random() * colors.length)]
